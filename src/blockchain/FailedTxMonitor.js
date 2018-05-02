@@ -1,7 +1,7 @@
 import { hexToNumber } from 'web3-utils';
 import { LiquidPledgingAbi } from 'giveth-liquidpledging/build/LiquidPledging.sol';
 import { LPVaultAbi } from 'giveth-liquidpledging/build/LPVault.sol';
-import { LPPCappedMilestonesAbi } from 'lpp-capped-milestone/build/LPPCappedMilestones.sol';
+import { LPPCappedMilestoneAbi } from 'lpp-capped-milestone/build/LPPCappedMilestone.sol';
 import EventEmitter from 'events';
 import logger from 'winston';
 
@@ -56,7 +56,7 @@ class FailedTxMonitor extends EventEmitter {
       );
     });
 
-    LPPCappedMilestonesAbi.filter(method => method.type === 'event').forEach(event => {
+    LPPCappedMilestoneAbi.filter(method => method.type === 'event').forEach(event => {
       this.decoders.milestone[event.name] = this.web3.eth.Contract.prototype._decodeEventABI.bind(
         event,
       );
